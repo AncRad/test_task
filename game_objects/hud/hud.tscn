@@ -1,0 +1,113 @@
+[gd_scene load_steps=4 format=3 uid="uid://v5j344uq4obp"]
+
+[ext_resource type="Script" path="res://game_objects/hud/hud.gd" id="1_xm3i0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwumg"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0xaa"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_xm3i0")
+metadata/_edit_lock_ = true
+
+[node name="PanelPlayerStats" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 22.0
+offset_bottom = 30.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rwumg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelPlayerStats"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelPlayerStats/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LabelHP" type="Label" parent="PanelPlayerStats/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "HP"
+vertical_alignment = 3
+
+[node name="LabelHPCount" type="Label" parent="PanelPlayerStats/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "00/00"
+horizontal_alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelPlayerStats/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LabelKeys" type="Label" parent="PanelPlayerStats/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ключи:"
+vertical_alignment = 3
+
+[node name="LabelKeysCount" type="Label" parent="PanelPlayerStats/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "00"
+horizontal_alignment = 2
+
+[node name="PanelInteractiveItemMessage" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -367.0
+offset_right = 367.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m0xaa")
+
+[node name="LabelInteractiveItemMessage" type="Label" parent="PanelInteractiveItemMessage"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Текст сообщения интерактивного объекта"
+horizontal_alignment = 1
+
+[node name="TimerInteractiveItemMessage" type="Timer" parent="PanelInteractiveItemMessage"]
+unique_name_in_owner = true
+wait_time = 5.0
+
+[connection signal="timeout" from="PanelInteractiveItemMessage/TimerInteractiveItemMessage" to="." method="hide_interactive_message"]

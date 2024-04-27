@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SimpleItems" load_steps=3 format=3 uid="uid://fsjojhbb3qah"]
+
+[ext_resource type="Script" path="res://game_objects/item/simple_items/simple_items.gd" id="1_jvg67"]
+[ext_resource type="Texture2D" uid="uid://nesgcvp8wmmg" path="res://assets/temp/olive.atlastex" id="2_q0rvq"]
+
+[resource]
+script = ExtResource("1_jvg67")
+type = 3
+texture = ExtResource("2_q0rvq")
+sprite_scale = Vector2(inf, inf)

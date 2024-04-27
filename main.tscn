@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://sd8yg8wdvw3y"]
+
+[ext_resource type="Script" path="res://game_objects/map/map_holder.gd" id="1_hem6b"]
+[ext_resource type="PackedScene" uid="uid://dqx7gsvqsh7gg" path="res://map_street.tscn" id="2_3js5a"]
+[ext_resource type="PackedScene" uid="uid://v5j344uq4obp" path="res://game_objects/hud/hud.tscn" id="7_qk65e"]
+[ext_resource type="Script" path="res://death_handler.gd" id="21_qwkae"]
+
+[node name="Main" type="Node"]
+
+[node name="MapHolder" type="Node" parent="." node_paths=PackedStringArray("current_map")]
+script = ExtResource("1_hem6b")
+current_map = NodePath("MapStreet")
+
+[node name="MapStreet" parent="MapHolder" instance=ExtResource("2_3js5a")]
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="GUI" node_paths=PackedStringArray("player") instance=ExtResource("7_qk65e")]
+unique_name_in_owner = true
+visible = false
+player = NodePath("../../MapHolder/MapStreet/PlayerCharacter")
+
+[node name="DeathHandler" type="Node" parent="." node_paths=PackedStringArray("map_holder")]
+script = ExtResource("21_qwkae")
+map_holder = NodePath("../MapHolder")
+
+[connection signal="map_changed" from="MapHolder" to="DeathHandler" method="_on_map_holder_map_changed"]
+[connection signal="dead" from="MapHolder/MapStreet/PlayerCharacter" to="DeathHandler" method="_on_player_character_dead"]
+
+[editable path="MapHolder/MapStreet"]

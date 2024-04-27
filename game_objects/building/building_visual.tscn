@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdk5txhgupixp"]
+
+[ext_resource type="PackedScene" uid="uid://y7ns2r0hv633" path="res://game_objects/building/building.tscn" id="1_1ewqr"]
+[ext_resource type="Script" path="res://game_objects/building/building_visual.gd" id="2_w1uoe"]
+
+[node name="Building" instance=ExtResource("1_1ewqr")]
+script = ExtResource("2_w1uoe")
+texture_building = null
+texture_door_closed = null
+texture_door_opened = null
+
+[node name="SpriteBuilding" type="Sprite2D" parent="StaticBody2D" index="1"]
+unique_name_in_owner = true
+position = Vector2(0, -146)
+scale = Vector2(0.721491, 0.721491)
+
+[node name="SpriteDoor" type="Sprite2D" parent="DoorArea" index="1"]
+unique_name_in_owner = true
+position = Vector2(3.05176e-05, -53)
+scale = Vector2(0.540816, 0.540816)
+
+[connection signal="locked_changed" from="." to="." method="update" unbinds=1]

@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cagqeothr41jp"]
+
+[ext_resource type="Script" path="res://game_objects/building/building_map.gd" id="1_qino5"]
+[ext_resource type="PackedScene" uid="uid://ikhkcijnmcxy" path="res://game_objects/building/door_area.tscn" id="2_bs5tx"]
+[ext_resource type="PackedScene" uid="uid://cltmc6iygum7q" path="res://game_objects/building/exit_point.tscn" id="3_ew6f8"]
+[ext_resource type="Texture2D" uid="uid://dvxkq0fxvboyc" path="res://assets/temp/open_door.atlastex" id="3_w72wy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fvebl"]
+size = Vector2(82, 126)
+
+[node name="BuildingMap" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_qino5")
+
+[node name="DoorArea" parent="." node_paths=PackedStringArray("building_map") instance=ExtResource("2_bs5tx")]
+unique_name_in_owner = true
+exterior = false
+building_map = NodePath("..")
+
+[node name="CollisionShape2D" parent="DoorArea" index="0"]
+position = Vector2(0, -36)
+shape = SubResource("RectangleShape2D_fvebl")
+
+[node name="Sprite2D" type="Sprite2D" parent="DoorArea"]
+position = Vector2(-5, -46)
+scale = Vector2(0.565217, 0.565217)
+texture = ExtResource("3_w72wy")
+
+[node name="ExitPoint" parent="." instance=ExtResource("3_ew6f8")]
+unique_name_in_owner = true
+
+[editable path="DoorArea"]
