@@ -21,40 +21,34 @@ func _validate_property(property : Dictionary) -> void:
 				property.usage = PROPERTY_USAGE_NONE
 
 func get_building() -> Building:
-	if is_exterior():
+	if exterior:
 		return building
 	else:
-		return building_map.get_building()
+		return building_map.building
 
-func is_exterior() -> bool:
-	return exterior
-
-func is_locked(_character : PlayerCharacter = null) -> bool:
+func is_locked() -> bool:
 	if exterior:
 		return get_building().is_locked()
 	else:
 		return false
 
-func can_be_unlocked(character : PlayerCharacter = null) -> bool:
-	if is_exterior():
-		return get_building().can_be_unlocked(character)
+func unlock() -> bool:
+	if exterior:
+		return get_building().unlock()
 	return false
 
-func unlock(character : PlayerCharacter = null) -> bool:
-	if is_exterior():
-		if can_be_unlocked(character):
-			return get_building().unlock(character)
-	return false
+func can_unlock() -> bool:
+	return get_building().can_unlock()
 
-func can_enter(character : PlayerCharacter = null) -> bool:
-	if is_exterior():
-		return get_building().can_enter(character)
+func can_enter() -> bool:
+	if exterior:
+		return get_building().can_enter()
 	else:
-		return get_building().can_exit(character)
+		return get_building().can_exit()
 
-func enter(character : PlayerCharacter = null) -> bool:
-	if can_enter(character):
-		if is_exterior():
+func enter(character : PlayerCharacter) -> bool:
+	if can_enter():
+		if exterior:
 			return get_building().enter(character)
 		else:
 			return get_building().exit(character)

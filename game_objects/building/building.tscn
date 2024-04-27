@@ -7,9 +7,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2beh2"]
 size = Vector2(300, 217)
 
-[node name="Building" type="Node2D"]
+[node name="Building" type="Node2D" node_paths=PackedStringArray("exit_point")]
 y_sort_enabled = true
 script = ExtResource("1_emlxn")
+exit_point = NodePath("ExitPoint")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

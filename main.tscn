@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://sd8yg8wdvw3y"]
 
 [ext_resource type="Script" path="res://game_objects/map/map_holder.gd" id="1_hem6b"]
-[ext_resource type="PackedScene" uid="uid://dqx7gsvqsh7gg" path="res://map_street.tscn" id="2_3js5a"]
-[ext_resource type="PackedScene" uid="uid://v5j344uq4obp" path="res://game_objects/hud/hud.tscn" id="7_qk65e"]
+[ext_resource type="PackedScene" uid="uid://dqx7gsvqsh7gg" path="res://game_objects/map/street/street.tscn" id="2_3js5a"]
+[ext_resource type="PackedScene" uid="uid://v5j344uq4obp" path="res://hud/hud.tscn" id="7_qk65e"]
 [ext_resource type="Script" path="res://death_handler.gd" id="21_qwkae"]
 
 [node name="Main" type="Node"]
@@ -12,6 +12,15 @@ script = ExtResource("1_hem6b")
 current_map = NodePath("MapStreet")
 
 [node name="MapStreet" parent="MapHolder" instance=ExtResource("2_3js5a")]
+
+[node name="Building1" parent="MapHolder/MapStreet/Buildings" index="0" node_paths=PackedStringArray("map_holder")]
+map_holder = NodePath("../../..")
+
+[node name="Building2" parent="MapHolder/MapStreet/Buildings" index="1" node_paths=PackedStringArray("map_holder")]
+map_holder = NodePath("../../..")
+
+[node name="Building3" parent="MapHolder/MapStreet/Buildings" index="2" node_paths=PackedStringArray("map_holder")]
+map_holder = NodePath("../../..")
 
 [node name="GUI" type="CanvasLayer" parent="."]
 

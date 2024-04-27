@@ -215,14 +215,14 @@ animation = &"right"
 [node name="Forward" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="InteractiveObjectPicker" type="ShapeCast2D" parent="Forward"]
-unique_name_in_owner = true
+[node name="InteractiveObjectPicker" type="ShapeCast2D" parent="Forward" node_paths=PackedStringArray("player")]
 shape = SubResource("CircleShape2D_bofb7")
 exclude_parent = false
 target_position = Vector2(75, 0)
 max_results = 1
 collision_mask = 5
 script = ExtResource("4_wr72p")
+player = NodePath("../..")
 
 [node name="ItemPickupper" type="Area2D" parent="." node_paths=PackedStringArray("user")]
 collision_layer = 0

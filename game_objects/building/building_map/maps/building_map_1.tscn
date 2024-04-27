@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://devehl8powc14"]
 
-[ext_resource type="PackedScene" uid="uid://cagqeothr41jp" path="res://game_objects/building/building_map.tscn" id="1_vvcnl"]
+[ext_resource type="PackedScene" uid="uid://cagqeothr41jp" path="res://game_objects/building/building_map/building_map.tscn" id="1_vvcnl"]
 [ext_resource type="PackedScene" uid="uid://dngtanvwxbpnb" path="res://game_objects/interactive_object/interactive_indicator.tscn" id="2_ex62v"]
 [ext_resource type="Texture2D" uid="uid://bhb7ni4eeevr7" path="res://assets/temp/street.png" id="3_1qmcy"]
 [ext_resource type="Texture2D" uid="uid://bv52rpg5df5lv" path="res://assets/temp/wall.atlastex" id="4_cw80s"]

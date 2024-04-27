@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://b8g8nqsp50035"]
 
-[ext_resource type="PackedScene" uid="uid://cagqeothr41jp" path="res://game_objects/building/building_map.tscn" id="1_klg18"]
+[ext_resource type="PackedScene" uid="uid://cagqeothr41jp" path="res://game_objects/building/building_map/building_map.tscn" id="1_klg18"]
 [ext_resource type="PackedScene" uid="uid://dngtanvwxbpnb" path="res://game_objects/interactive_object/interactive_indicator.tscn" id="2_f6yto"]
 [ext_resource type="Texture2D" uid="uid://bhb7ni4eeevr7" path="res://assets/temp/street.png" id="2_u2tfj"]
 [ext_resource type="PackedScene" uid="uid://j174638nlmvy" path="res://game_objects/pickupable_item/pickupable_item.tscn" id="3_o2vee"]
@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://fsjojhbb3qah" path="res://game_objects/item/simple_items/olive.tres" id="7_0pgse"]
 [ext_resource type="Resource" uid="uid://b2cruryrffuaj" path="res://game_objects/item/simple_items/orange.tres" id="8_bfged"]
 [ext_resource type="Resource" uid="uid://d4huw774cfvun" path="res://game_objects/item/simple_items/chili_pepper.tres" id="9_e310a"]
-[ext_resource type="Resource" uid="uid://c2xq1x7jl55q7" path="res://alarm_potion.tres" id="10_en0eu"]
+[ext_resource type="Resource" uid="uid://c2xq1x7jl55q7" path="res://game_objects/map/street/alarm_potion.tres" id="10_en0eu"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ccxng"]
 

@@ -22,9 +22,6 @@ func change_map(map : Map) -> bool:
 					return true
 	return false
 
-func get_current_map() -> Map:
-	return current_map
-
 func _change_map() -> void:
 	if current_map:
 		remove_child(current_map)

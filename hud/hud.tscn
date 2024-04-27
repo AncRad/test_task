@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://v5j344uq4obp"]
 
-[ext_resource type="Script" path="res://game_objects/hud/hud.gd" id="1_xm3i0"]
+[ext_resource type="Script" path="res://hud/hud.gd" id="1_xm3i0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwumg"]
 content_margin_left = 10.0

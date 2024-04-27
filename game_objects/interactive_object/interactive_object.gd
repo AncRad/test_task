@@ -1,19 +1,10 @@
 class_name InteractiveObject
 extends CollisionObject2D
 
-#signal used_by(user : PlayerCharacter)
-#signal hint(message : String, time : float)
-
-#@export_group("Hint", "hint_")
 @export var hint_message : String = ""
 @export_range(0, 10, 0.1, "or_greater", "suffix:секунд")
 var hint_time : float = 0
 
-
-func can_use_by(user : PlayerCharacter) -> bool:
-	if user:
-		return true
-	return false
 
 func use_by(user : PlayerCharacter) -> bool:
 	if user:

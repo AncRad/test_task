@@ -10,82 +10,71 @@ signal locked_changed(locked : bool)
 			locked = value
 			locked_changed.emit(locked)
 
+@export var exit_point : ExitPoint
 @export var interier : PackedScene
 @export var map_holder : MapHolder
 
-var _building_map : BuildingMap
-var _map : Map
+
+var interior_map : BuildingMap
+var _map : Map ## BAD
 
 
 func _notification(what : int) -> void:
 	if what == NOTIFICATION_PREDELETE:
-		if is_instance_valid(_building_map):
-			_building_map.queue_free()
+		if is_instance_valid(interior_map):
+			interior_map.queue_free() ## BAD
 
 func _enter_tree() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	if not map_holder:
-		var finded := find_parent("MapHolder")
-		if finded is Node:
-			map_holder = finded as MapHolder
+	if not map_holder and not Engine.is_editor_hint():
+		if find_parent("MapHolder") is MapHolder:
+			map_holder = find_parent("MapHolder")
+	
 	if map_holder:
-		_map = map_holder.get_current_map()
+		_map = map_holder.current_map
 	
-	if interier:
-		var inst := interier.instantiate()
+	if interier and not interior_map:
+		var inst := interier.instantiate() ## BAD
 		if inst is BuildingMap:
-			_building_map = inst
-			_building_map._building = self
+			interior_map = inst
+			interior_map.building = self
 	
-	if not map_holder or not _building_map:
+	if not map_holder or not interior_map:
 		locked = true
 
 
 func enter(entering : PlayerCharacter) -> bool:
-	if can_enter(entering):
-		if map_holder.change_map(_building_map):
-			var exit_point := _building_map.get_exit_point()
-			exit_point.put_chacater(entering, _building_map)
-			#enter_request.emit(self, entering)
+	if can_enter():
+		if map_holder.change_map(interior_map): ## BAD
+			interior_map.exit_point.put_chacater(entering, interior_map)
 			return true
 	return false
 
-func can_enter(_entering : PlayerCharacter) -> bool:
+func can_enter() -> bool:
 	return not locked and has_interior()
 
 func has_interior() -> bool:
 	if Engine.is_editor_hint():
 		return interier != null
 	else:
-		return _building_map and map_holder
+		return interior_map and map_holder
 
 
 func exit(exiting : PlayerCharacter) -> bool:
-	if exiting:
-		if can_exit(exiting):
-			if map_holder.change_map(_map):
-				var exit_point := get_exit_point()
-				exit_point.put_chacater(exiting, _map)
-				#exit_request.emit(self, exiting)
-				return true
+	if can_exit():
+		if map_holder.change_map(_map): ## BAD
+			exit_point.put_chacater(exiting, _map)
+			return true
 	return false
 
-func can_exit(_exiting : PlayerCharacter) -> bool:
-	assert(map_holder)
-	assert(get_exit_point())
-	return has_exterior()
-
-func get_exit_point() -> ExitPoint:
-	return %ExitPoint as ExitPoint
-
-func has_exterior() -> bool:
-	return map_holder and get_exit_point()
+func can_exit() -> bool:
+	return map_holder and exit_point
 
 
-func unlock(_entering : PlayerCharacter) -> bool:
-	if can_be_unlocked():
+func unlock() -> bool:
+	if can_unlock():
 		locked = false
 		return true
 	return false
@@ -93,9 +82,8 @@ func unlock(_entering : PlayerCharacter) -> bool:
 func is_locked() -> bool:
 	return locked
 
-func can_be_unlocked(_character : PlayerCharacter = null) -> bool:
+func can_unlock() -> bool:
 	return locked and has_interior()
-
 
 
 

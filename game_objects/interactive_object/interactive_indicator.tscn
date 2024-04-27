@@ -1,31 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dngtanvwxbpnb"]
 
 [ext_resource type="PackedScene" uid="uid://mmllw3je1ep1" path="res://game_objects/interactive_object/interactive_object.tscn" id="1_70q6k"]
-
-[sub_resource type="GDScript" id="GDScript_fcqpm"]
-script/source = "extends InteractiveObject
-
-@export var next_color := Color.GREEN
-var last_color : Color
-@export var hint_switched_message : String
-
-func _use_by(_user = null) -> bool:
-	switch()
-	return true
-
-func switch(_user = null) -> void:
-	if modulate == next_color:
-		modulate = last_color
-	else:
-		last_color = modulate
-		modulate = next_color
-
-func get_hint_message() -> String:
-	if modulate == next_color:
-		if hint_switched_message:
-			return hint_switched_message
-	return super()
-"
+[ext_resource type="Script" path="res://game_objects/interactive_object/interactive_indicator.gd" id="2_j6qa8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_boyoc"]
 radius = 30.0
@@ -33,7 +9,8 @@ radius = 30.0
 [sub_resource type="SphereMesh" id="SphereMesh_ty16p"]
 
 [node name="InteractiveIndicator" instance=ExtResource("1_70q6k")]
-script = SubResource("GDScript_fcqpm")
+y_sort_enabled = true
+script = ExtResource("2_j6qa8")
 next_color = Color(0, 1, 0, 1)
 hint_switched_message = ""
 

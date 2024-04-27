@@ -14,7 +14,7 @@ func _on_player_character_dead() -> void:
 	if map_holder.current_map:
 		_old_map = map_holder.current_map
 	
-	var scn := load("res://map_street.tscn") as PackedScene
+	var scn := load("res://game_objects/map/street/street.tscn") as PackedScene
 	map_holder.change_map(scn.instantiate())
 
 
