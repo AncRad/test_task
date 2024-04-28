@@ -1,6 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://v5j344uq4obp"]
+[gd_scene load_steps=8 format=3 uid="uid://v5j344uq4obp"]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_xm3i0"]
+[ext_resource type="Script" path="res://hud/door_accept_popup.gd" id="2_b7si0"]
+[ext_resource type="PackedScene" uid="uid://cm1k4axrccles" path="res://hud/inventory_control/inventory_panel.tscn" id="2_ckf2r"]
+[ext_resource type="Script" path="res://hud/inventory_control/player_inventory_panel.gd" id="3_kv8gx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwumg"]
 content_margin_left = 10.0
@@ -19,6 +22,13 @@ content_margin_top = 10.0
 content_margin_right = 10.0
 content_margin_bottom = 10.0
 bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tq4vr"]
+bg_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -110,4 +120,93 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 wait_time = 5.0
 
+[node name="PlayerInventoryPanel" parent="." instance=ExtResource("2_ckf2r")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -494.0
+offset_top = -261.0
+offset_right = 494.0
+offset_bottom = 261.0
+script = ExtResource("3_kv8gx")
+translation_use = &"Использовать"
+translation_drop = &"Выбросить"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -506.0
+offset_top = -269.0
+offset_right = 506.0
+offset_bottom = 269.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tq4vr")
+
+[node name="DoorAcceptPopup" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -73.0
+offset_right = 124.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+script = ExtResource("2_b7si0")
+
+[node name="Panel" type="Panel" parent="DoorAcceptPopup"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="DoorAcceptPopup"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DoorAcceptPopup/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DoorAcceptPopup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Вы хотите потратить 1 ключ и открыть дверь?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DoorAcceptPopup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Yes" type="Button" parent="DoorAcceptPopup/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+text = "Да"
+
+[node name="No" type="Button" parent="DoorAcceptPopup/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+text = "Нет"
+
 [connection signal="timeout" from="PanelInteractiveItemMessage/TimerInteractiveItemMessage" to="." method="hide_interactive_message"]
+[connection signal="visibility_changed" from="PlayerInventoryPanel" to="." method="_on_inventory_panel_visibility_changed"]
+[connection signal="pressed" from="DoorAcceptPopup/MarginContainer/VBoxContainer/HBoxContainer/Yes" to="DoorAcceptPopup" method="_on_yes_pressed"]
+[connection signal="pressed" from="DoorAcceptPopup/MarginContainer/VBoxContainer/HBoxContainer/No" to="DoorAcceptPopup" method="_on_no_pressed"]

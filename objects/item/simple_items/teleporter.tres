@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SimpleItems" load_steps=3 format=3 uid="uid://62ban0spyblt"]
+
+[ext_resource type="Script" path="res://objects/item/simple_item.gd" id="1_n4wb7"]
+[ext_resource type="Texture2D" uid="uid://ctgk78nv0u7at" path="res://assets/temp/teleporter.png" id="2_a6vnw"]
+
+[resource]
+script = ExtResource("1_n4wb7")
+type = 8
+texture = ExtResource("2_a6vnw")
+sprite_scale = Vector2(1, 1)
+translation_context = &"item"
+translation_name = &"Телепортер"
+translation_description = &"Описание Телепортера"

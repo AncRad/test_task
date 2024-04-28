@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://y7ns2r0hv633"]
+
+[ext_resource type="Script" path="res://objects/building/building.gd" id="1_emlxn"]
+[ext_resource type="PackedScene" uid="uid://ikhkcijnmcxy" path="res://objects/building/door_area.tscn" id="2_ldr76"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2beh2"]
+size = Vector2(300, 217)
+
+[node name="Building" type="Node2D" node_paths=PackedStringArray("exit_point")]
+y_sort_enabled = true
+script = ExtResource("1_emlxn")
+exit_point = NodePath("ExitPoint")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+y_sort_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+y_sort_enabled = true
+position = Vector2(0, -107.5)
+shape = SubResource("RectangleShape2D_2beh2")
+
+[node name="ExitPoint" type="Marker2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 104)
+
+[node name="DoorArea" parent="." node_paths=PackedStringArray("building") instance=ExtResource("2_ldr76")]
+y_sort_enabled = true
+monitoring = false
+building = NodePath("..")

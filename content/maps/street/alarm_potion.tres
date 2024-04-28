@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SimpleItems" load_steps=3 format=3 uid="uid://c2xq1x7jl55q7"]
+
+[ext_resource type="Script" path="res://objects/item/simple_item.gd" id="1_ou6p7"]
+[ext_resource type="Texture2D" uid="uid://by64r80rx06kw" path="res://assets/kenney_generic_items/potion.png" id="2_0r8kh"]
+
+[resource]
+script = ExtResource("1_ou6p7")
+type = 4
+texture = ExtResource("2_0r8kh")
+sprite_scale = Vector2(0.5, 0.5)
+translation_context = &"item"
+translation_name = &"Зелье сигнализации"
+translation_description = &"Закрывает все двери"

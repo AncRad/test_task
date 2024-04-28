@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl21w1vkwwonw"]
+
+[ext_resource type="Script" path="res://objects/player_character/door_picker.gd" id="1_bvlsd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n7y4a"]
+radius = 25.0
+
+[node name="DoorPicker" type="Area2D" node_paths=PackedStringArray("user")]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+script = ExtResource("1_bvlsd")
+user = NodePath("")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_n7y4a")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

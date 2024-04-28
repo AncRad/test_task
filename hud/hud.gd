@@ -1,27 +1,22 @@
 class_name HUD
 extends Control
 
-@export var player : PlayerCharacter:
-	set(value):
-		if value != player:
-			if player:
-				player.stats_changed.disconnect(update)
-				player.hint_interactive_message.disconnect(hint_interactive_message)
-			
-			player = value
-			
-			if player:
-				player.stats_changed.connect(update)
-				player.hint_interactive_message.connect(hint_interactive_message)
-			update()
+@export var player : PlayerCharacter: set = set_player
 
 var _updated := true
 
 
 func _ready() -> void:
 	show()
-	update()
 	hide_interactive_message()
+	%DoorAcceptPopup.hide()
+	%PlayerInventoryPanel.hide()
+	update()
+
+func _unhandled_input(event : InputEvent) -> void:
+	if event.is_pressed() and not event.is_echo():
+		if event.is_action("player_character_inventory_toggle"):
+			%PlayerInventoryPanel.visible = not %PlayerInventoryPanel.visible
 
 func update() -> void:
 	if _updated:
@@ -41,6 +36,38 @@ func hide_interactive_message() -> void:
 	%PanelInteractiveItemMessage.hide()
 	%TimerInteractiveItemMessage.stop()
 
+func player_door_open_callback() -> bool:
+	get_tree().paused = true
+	%DoorAcceptPopup.show()
+	var yes : bool = await %DoorAcceptPopup.choise
+	get_tree().paused = false
+	return yes
+
+func set_player(value : PlayerCharacter) -> void:
+	if value != player:
+		if player:
+			player.stats_changed.disconnect(update)
+			player.hint_interactive_message.disconnect(hint_interactive_message)
+			player.door_open_callback = Callable()
+			%PlayerInventoryPanel.player = null
+			%PlayerInventoryPanel.hide()
+		else:
+			assert(not %DoorAcceptPopup.visible)
+		
+		player = value
+		
+		if player:
+			player.stats_changed.connect(update)
+			player.hint_interactive_message.connect(hint_interactive_message)
+			player.door_open_callback = player_door_open_callback
+			%PlayerInventoryPanel.player = player
+			%PlayerInventoryPanel.hide()
+		update()
+
+func _on_inventory_panel_visibility_changed() -> void:
+	if player:
+		player.handle_input = not %PlayerInventoryPanel.visible
+
 func _update() -> void:
 	_updated = true
 	if player:
@@ -50,3 +77,4 @@ func _update() -> void:
 		%LabelHPCount.text = '%d/%d' % [0, 0]
 		%LabelKeysCount.text = '%d' % 0
 		hide_interactive_message()
+

@@ -1,0 +1,152 @@
+[gd_scene load_steps=10 format=3 uid="uid://cm1k4axrccles"]
+
+[ext_resource type="Script" path="res://hud/inventory_control/inventory_panel.gd" id="1_0a4bx"]
+[ext_resource type="Texture2D" uid="uid://vnifykxkd85d" path="res://application/icon.svg" id="2_py3c3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yiiia"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qoyjs"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_115lb"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3f2ou"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_crq8p"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_ul6r0"]
+font_size = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_olh5y"]
+
+[node name="InventoryPanel" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yiiia")
+script = ExtResource("1_0a4bx")
+empty_texture = ExtResource("2_py3c3")
+error_texture = ExtResource("2_py3c3")
+translation_no_name = &"Пусто"
+translation_no_description = &"Пустая ячейка"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qoyjs")
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+allow_reselect = true
+allow_rmb_select = true
+max_columns = 50
+same_column_width = true
+icon_mode = 0
+fixed_icon_size = Vector2i(100, 100)
+
+[node name="SelectedPanel" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/SelectedPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.2
+theme_override_styles/panel = SubResource("StyleBoxFlat_115lb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/SelectedPanel/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.55
+theme_override_constants/separation = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/SelectedPanel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_3f2ou")
+
+[node name="SelectedNameLabel" type="Label" parent="VBoxContainer/SelectedPanel/PanelContainer/VBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+text = "Название предмета"
+label_settings = SubResource("LabelSettings_crq8p")
+text_overrun_behavior = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/SelectedPanel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_3f2ou")
+
+[node name="SelectedInfoLabel" type="Label" parent="VBoxContainer/SelectedPanel/PanelContainer/VBoxContainer/PanelContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+text = "Описание предмета"
+label_settings = SubResource("LabelSettings_ul6r0")
+autowrap_mode = 3
+text_overrun_behavior = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/SelectedPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_3f2ou")
+
+[node name="Buttons" type="Tree" parent="VBoxContainer/SelectedPanel/PanelContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_olh5y")
+allow_search = false
+hide_root = true
+scroll_horizontal_enabled = false
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="item_selected" from="VBoxContainer/PanelContainer/ItemList" to="." method="_on_item_list_item_selected" unbinds=1]
+[connection signal="item_selected" from="VBoxContainer/SelectedPanel/PanelContainer2/Buttons" to="." method="_on_buttons_item_selected"]

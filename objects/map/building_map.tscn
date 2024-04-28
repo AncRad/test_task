@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cagqeothr41jp"]
+
+[ext_resource type="PackedScene" uid="uid://c33apw1eyoqe5" path="res://objects/map/map.tscn" id="1_qvcic"]
+[ext_resource type="Script" path="res://objects/map/building_map.gd" id="2_nsawb"]
+[ext_resource type="PackedScene" uid="uid://ikhkcijnmcxy" path="res://objects/building/door_area.tscn" id="3_mn1cg"]
+
+[node name="BuildingMap" instance=ExtResource("1_qvcic")]
+script = ExtResource("2_nsawb")
+
+[node name="ExitPoint" parent="." index="0"]
+position = Vector2(0, 100)
+
+[node name="DoorArea" parent="." index="1" node_paths=PackedStringArray("building_map") instance=ExtResource("3_mn1cg")]
+unique_name_in_owner = true
+exterior = false
+building_map = NodePath("..")
+
+[editable path="DoorArea"]

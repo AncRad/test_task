@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c33apw1eyoqe5"]
+
+[ext_resource type="Script" path="res://objects/map/map.gd" id="1_0mfvt"]
+
+[node name="Map" type="Node2D" node_paths=PackedStringArray("exit_point")]
+y_sort_enabled = true
+script = ExtResource("1_0mfvt")
+exit_point = NodePath("ExitPoint")
+
+[node name="ExitPoint" type="Marker2D" parent="."]
+y_sort_enabled = true

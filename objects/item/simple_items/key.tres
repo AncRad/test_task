@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SimpleItems" load_steps=3 format=3 uid="uid://di26h5cvtejuk"]
+
+[ext_resource type="Script" path="res://objects/item/simple_item.gd" id="1_4afk3"]
+[ext_resource type="Texture2D" uid="uid://bbg2f4k23h7rs" path="res://assets/kenney_generic_items/key.png" id="2_hsr2e"]
+
+[resource]
+script = ExtResource("1_4afk3")
+type = 5
+texture = ExtResource("2_hsr2e")
+sprite_scale = Vector2(0.5, 0.5)
+translation_context = &"item"
+translation_name = &"Ключ"
+translation_description = &"Описание Ключа"

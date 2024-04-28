@@ -1,4 +1,4 @@
 # Godot 4+ specific ignores
 .godot/
-_dev/
 addons/godot-git-plugin/
+**/_test*/

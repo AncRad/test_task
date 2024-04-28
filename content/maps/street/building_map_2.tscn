@@ -1,0 +1,105 @@
+[gd_scene load_steps=13 format=3 uid="uid://b8g8nqsp50035"]
+
+[ext_resource type="PackedScene" uid="uid://cagqeothr41jp" path="res://objects/map/building_map.tscn" id="1_gvg1b"]
+[ext_resource type="Texture2D" uid="uid://dvxkq0fxvboyc" path="res://assets/temp/open_door.atlastex" id="2_75r4y"]
+[ext_resource type="Texture2D" uid="uid://bhb7ni4eeevr7" path="res://assets/temp/street.png" id="3_igugu"]
+[ext_resource type="Texture2D" uid="uid://bv52rpg5df5lv" path="res://assets/temp/wall.atlastex" id="4_k7fsl"]
+[ext_resource type="PackedScene" uid="uid://dngtanvwxbpnb" path="res://objects/interactive_object/interactive_indicator.tscn" id="5_spqib"]
+[ext_resource type="PackedScene" uid="uid://j174638nlmvy" path="res://objects/pickupable_item/pickupable_item.tscn" id="6_koxs2"]
+[ext_resource type="Resource" uid="uid://b5eyhw5isoc1h" path="res://objects/item/simple_items/apple.tres" id="7_td0ku"]
+[ext_resource type="Resource" uid="uid://fsjojhbb3qah" path="res://objects/item/simple_items/olive.tres" id="8_4wpkw"]
+[ext_resource type="Resource" uid="uid://b2cruryrffuaj" path="res://objects/item/simple_items/orange.tres" id="9_37duy"]
+[ext_resource type="Resource" uid="uid://d4huw774cfvun" path="res://objects/item/simple_items/chili_pepper.tres" id="10_waduf"]
+[ext_resource type="Resource" uid="uid://c2xq1x7jl55q7" path="res://content/maps/street/alarm_potion.tres" id="11_j3grl"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ccxng"]
+
+[node name="BuildingMap2" instance=ExtResource("1_gvg1b")]
+
+[node name="ExitPoint" parent="." index="0"]
+position = Vector2(-101, -72)
+
+[node name="DoorArea" parent="." index="1"]
+y_sort_enabled = true
+position = Vector2(-212, -168)
+
+[node name="Sprite2D" type="Sprite2D" parent="DoorArea" index="1"]
+position = Vector2(-5, -75)
+scale = Vector2(0.565217, 0.565217)
+texture = ExtResource("2_75r4y")
+
+[node name="Interactive" type="Node2D" parent="." index="2"]
+y_sort_enabled = true
+
+[node name="InteractiveIndicator" parent="Interactive" index="0" instance=ExtResource("5_spqib")]
+position = Vector2(443, 439)
+hint_message = "Сообщение"
+
+[node name="Items" type="Node2D" parent="." index="3"]
+y_sort_enabled = true
+
+[node name="Apple" parent="Items" index="0" instance=ExtResource("6_koxs2")]
+position = Vector2(-426, 306)
+rotation = -1.69999
+item = ExtResource("7_td0ku")
+
+[node name="Olive" parent="Items" index="1" instance=ExtResource("6_koxs2")]
+position = Vector2(-394, 113)
+rotation = -1.69999
+item = ExtResource("8_4wpkw")
+
+[node name="Orange" parent="Items" index="2" instance=ExtResource("6_koxs2")]
+position = Vector2(-224, 235)
+rotation = -1.69999
+item = ExtResource("9_37duy")
+
+[node name="ChiliPepper" parent="Items" index="3" instance=ExtResource("6_koxs2")]
+position = Vector2(445, 159)
+rotation = -1.69999
+item = ExtResource("10_waduf")
+
+[node name="AlarmPotion" parent="Items" index="4" instance=ExtResource("6_koxs2")]
+position = Vector2(192, 245)
+rotation = -0.0230523
+item = ExtResource("11_j3grl")
+
+[node name="Walls" type="StaticBody2D" parent="." index="4"]
+y_sort_enabled = true
+position = Vector2(757, 738)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls" index="0"]
+position = Vector2(-651, -184)
+shape = SubResource("WorldBoundaryShape2D_ccxng")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls" index="1"]
+position = Vector2(-757, -916)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_ccxng")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls" index="2"]
+position = Vector2(-1309, -594)
+rotation = 1.57079
+shape = SubResource("WorldBoundaryShape2D_ccxng")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls" index="3"]
+position = Vector2(-29, -545)
+rotation = 4.71238
+shape = SubResource("WorldBoundaryShape2D_ccxng")
+
+[node name="Floor" type="Sprite2D" parent="." index="5"]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(88, 188)
+scale = Vector2(0.66065, 0.66065)
+texture = ExtResource("3_igugu")
+metadata/_edit_lock_ = true
+
+[node name="Wall" type="Sprite2D" parent="." index="6"]
+self_modulate = Color(0.439216, 0.439216, 0.439216, 1)
+z_index = -1
+y_sort_enabled = true
+position = Vector2(88, -314)
+scale = Vector2(0.659454, 1)
+texture = ExtResource("4_k7fsl")
+
+[editable path="DoorArea"]

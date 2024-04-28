@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SimpleItems" load_steps=3 format=3 uid="uid://b2cruryrffuaj"]
+
+[ext_resource type="Script" path="res://objects/item/simple_item.gd" id="1_4xhc6"]
+[ext_resource type="Texture2D" uid="uid://bkxc46abnmgje" path="res://assets/temp/orange.atlastex" id="2_fpigt"]
+
+[resource]
+script = ExtResource("1_4xhc6")
+type = 1
+texture = ExtResource("2_fpigt")
+sprite_scale = Vector2(1, 1)
+translation_context = &"item"
+translation_name = &"Апельсин"
+translation_description = &"Описание Апельсина"

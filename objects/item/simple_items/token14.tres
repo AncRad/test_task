@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SimpleItems" load_steps=3 format=3 uid="uid://b7jaxovtq1lgu"]
+
+[ext_resource type="Script" path="res://objects/item/simple_item.gd" id="1_go34c"]
+[ext_resource type="Texture2D" uid="uid://c1xoxqjtjgavj" path="res://assets/kenney_generic_items/coin.png" id="2_gqqtk"]
+
+[resource]
+script = ExtResource("1_go34c")
+type = 6
+texture = ExtResource("2_gqqtk")
+sprite_scale = Vector2(1, 1)
+translation_context = &"item"
+translation_name = &"Жетон"
+translation_description = &"Описание Жетона"

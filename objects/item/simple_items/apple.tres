@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SimpleItems" load_steps=3 format=3 uid="uid://b5eyhw5isoc1h"]
+
+[ext_resource type="Script" path="res://objects/item/simple_item.gd" id="1_kmhla"]
+[ext_resource type="Texture2D" uid="uid://bw605di3fvua4" path="res://assets/temp/apple.atlastex" id="2_gbax1"]
+
+[resource]
+script = ExtResource("1_kmhla")
+type = 0
+texture = ExtResource("2_gbax1")
+sprite_scale = Vector2(1, 1)
+translation_context = &"item"
+translation_name = &"Яблоко"
+translation_description = &"Описание Яблока"

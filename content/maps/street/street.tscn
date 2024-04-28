@@ -1,0 +1,237 @@
+[gd_scene load_steps=22 format=3 uid="uid://dqx7gsvqsh7gg"]
+
+[ext_resource type="PackedScene" uid="uid://c33apw1eyoqe5" path="res://objects/map/map.tscn" id="1_c1p3a"]
+[ext_resource type="PackedScene" uid="uid://j174638nlmvy" path="res://objects/pickupable_item/pickupable_item.tscn" id="3_68klh"]
+[ext_resource type="Resource" uid="uid://b5eyhw5isoc1h" path="res://objects/item/simple_items/apple.tres" id="4_dbxui"]
+[ext_resource type="Resource" uid="uid://fsjojhbb3qah" path="res://objects/item/simple_items/olive.tres" id="5_u4ta4"]
+[ext_resource type="Resource" uid="uid://b2cruryrffuaj" path="res://objects/item/simple_items/orange.tres" id="6_hjn67"]
+[ext_resource type="Resource" uid="uid://di26h5cvtejuk" path="res://objects/item/simple_items/key.tres" id="7_sie6y"]
+[ext_resource type="Resource" uid="uid://d4huw774cfvun" path="res://objects/item/simple_items/chili_pepper.tres" id="8_ikw50"]
+[ext_resource type="Resource" uid="uid://c2xq1x7jl55q7" path="res://content/maps/street/alarm_potion.tres" id="9_kqs6l"]
+[ext_resource type="PackedScene" uid="uid://dngtanvwxbpnb" path="res://objects/interactive_object/interactive_indicator.tscn" id="10_coyje"]
+[ext_resource type="Resource" uid="uid://b7jaxovtq1lgu" path="res://objects/item/simple_items/token14.tres" id="10_dvw0d"]
+[ext_resource type="Resource" uid="uid://62ban0spyblt" path="res://objects/item/simple_items/teleporter.tres" id="11_nhk0q"]
+[ext_resource type="Resource" uid="uid://bejvxxysybme6" path="res://objects/item/simple_items/amulet.tres" id="11_nnl8v"]
+[ext_resource type="PackedScene" uid="uid://bdk5txhgupixp" path="res://objects/building/building_visual.tscn" id="11_stoop"]
+[ext_resource type="Texture2D" uid="uid://dygpmnn7qn03q" path="res://assets/temp/building.atlastex" id="12_kk0m4"]
+[ext_resource type="Texture2D" uid="uid://blb78gwopw2e3" path="res://assets/temp/closed_door.atlastex" id="13_s7moq"]
+[ext_resource type="Texture2D" uid="uid://dvxkq0fxvboyc" path="res://assets/temp/open_door.atlastex" id="14_7naw1"]
+[ext_resource type="PackedScene" uid="uid://devehl8powc14" path="res://content/maps/street/building_map_1.tscn" id="15_oqh3q"]
+[ext_resource type="PackedScene" uid="uid://b8g8nqsp50035" path="res://content/maps/street/building_map_2.tscn" id="16_nsbcg"]
+[ext_resource type="Texture2D" uid="uid://bhb7ni4eeevr7" path="res://assets/temp/street.png" id="17_jgo3v"]
+[ext_resource type="Script" path="res://objects/item/simple_items/alarm_potion_handler.gd" id="18_7vurf"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_50k4w"]
+
+[node name="Street" instance=ExtResource("1_c1p3a")]
+position = Vector2(712, 332)
+
+[node name="ExitPoint" parent="." index="0"]
+visible = false
+position = Vector2(154, 24)
+
+[node name="Items" type="Node2D" parent="." index="1"]
+y_sort_enabled = true
+
+[node name="Apple" parent="Items" index="0" instance=ExtResource("3_68klh")]
+position = Vector2(-287, 371)
+item = ExtResource("4_dbxui")
+
+[node name="Apple2" parent="Items" index="1" instance=ExtResource("3_68klh")]
+position = Vector2(-288, 285)
+item = ExtResource("4_dbxui")
+
+[node name="Apple3" parent="Items" index="2" instance=ExtResource("3_68klh")]
+position = Vector2(319, 272)
+item = ExtResource("4_dbxui")
+
+[node name="Apple4" parent="Items" index="3" instance=ExtResource("3_68klh")]
+position = Vector2(-217, 357)
+item = ExtResource("4_dbxui")
+
+[node name="Olive" parent="Items" index="4" instance=ExtResource("3_68klh")]
+position = Vector2(-83, 283)
+item = ExtResource("5_u4ta4")
+
+[node name="Olive2" parent="Items" index="5" instance=ExtResource("3_68klh")]
+position = Vector2(203, 194)
+item = ExtResource("5_u4ta4")
+
+[node name="Olive3" parent="Items" index="6" instance=ExtResource("3_68klh")]
+position = Vector2(-171, 187)
+item = ExtResource("5_u4ta4")
+
+[node name="Orange" parent="Items" index="7" instance=ExtResource("3_68klh")]
+position = Vector2(-268, 201)
+item = ExtResource("6_hjn67")
+
+[node name="Orange2" parent="Items" index="8" instance=ExtResource("3_68klh")]
+position = Vector2(312, 206)
+item = ExtResource("6_hjn67")
+
+[node name="Orange3" parent="Items" index="9" instance=ExtResource("3_68klh")]
+position = Vector2(-114, 254)
+item = ExtResource("6_hjn67")
+
+[node name="Key" parent="Items" index="10" instance=ExtResource("3_68klh")]
+position = Vector2(-398, -18)
+item = ExtResource("7_sie6y")
+
+[node name="Key2" parent="Items" index="11" instance=ExtResource("3_68klh")]
+position = Vector2(118, -98)
+item = ExtResource("7_sie6y")
+
+[node name="Key3" parent="Items" index="12" instance=ExtResource("3_68klh")]
+position = Vector2(691, -28)
+item = ExtResource("7_sie6y")
+
+[node name="Key4" parent="Items" index="13" instance=ExtResource("3_68klh")]
+position = Vector2(740, 99)
+item = ExtResource("7_sie6y")
+
+[node name="Key5" parent="Items" index="14" instance=ExtResource("3_68klh")]
+position = Vector2(839, -9)
+item = ExtResource("7_sie6y")
+
+[node name="ChiliPepper" parent="Items" index="15" instance=ExtResource("3_68klh")]
+position = Vector2(228, 282)
+item = ExtResource("8_ikw50")
+
+[node name="ChiliPepper2" parent="Items" index="16" instance=ExtResource("3_68klh")]
+position = Vector2(-168, 321)
+item = ExtResource("8_ikw50")
+
+[node name="ChiliPepper3" parent="Items" index="17" instance=ExtResource("3_68klh")]
+position = Vector2(-209, 271)
+item = ExtResource("8_ikw50")
+
+[node name="AlarmPotion" parent="Items" index="18" instance=ExtResource("3_68klh")]
+position = Vector2(417, 137)
+item = ExtResource("9_kqs6l")
+
+[node name="AlarmPotion2" parent="Items" index="19" instance=ExtResource("3_68klh")]
+position = Vector2(-404, 207)
+item = ExtResource("9_kqs6l")
+
+[node name="Token" parent="Items" index="20" instance=ExtResource("3_68klh")]
+position = Vector2(392, 218)
+item = ExtResource("10_dvw0d")
+
+[node name="Token2" parent="Items" index="21" instance=ExtResource("3_68klh")]
+position = Vector2(-359, 285)
+item = ExtResource("10_dvw0d")
+
+[node name="Amulet" parent="Items" index="22" instance=ExtResource("3_68klh")]
+position = Vector2(483, 214)
+item = ExtResource("11_nnl8v")
+
+[node name="Amulet2" parent="Items" index="23" instance=ExtResource("3_68klh")]
+position = Vector2(-398, 352)
+item = ExtResource("11_nnl8v")
+
+[node name="Teleporter" parent="Items" index="24" instance=ExtResource("3_68klh")]
+position = Vector2(630, 352)
+item = ExtResource("11_nhk0q")
+
+[node name="Teleporter2" parent="Items" index="25" instance=ExtResource("3_68klh")]
+position = Vector2(729, 311)
+item = ExtResource("11_nhk0q")
+
+[node name="Teleporter3" parent="Items" index="26" instance=ExtResource("3_68klh")]
+position = Vector2(650, 440)
+item = ExtResource("11_nhk0q")
+
+[node name="Teleporter4" parent="Items" index="27" instance=ExtResource("3_68klh")]
+position = Vector2(734, 400)
+item = ExtResource("11_nhk0q")
+
+[node name="Teleporter5" parent="Items" index="28" instance=ExtResource("3_68klh")]
+position = Vector2(558, 420)
+item = ExtResource("11_nhk0q")
+
+[node name="Teleporter6" parent="Items" index="29" instance=ExtResource("3_68klh")]
+position = Vector2(534, 333)
+item = ExtResource("11_nhk0q")
+
+[node name="Teleporter7" parent="Items" index="30" instance=ExtResource("3_68klh")]
+position = Vector2(584, 274)
+item = ExtResource("11_nhk0q")
+
+[node name="Teleporter8" parent="Items" index="31" instance=ExtResource("3_68klh")]
+position = Vector2(650, 251)
+item = ExtResource("11_nhk0q")
+
+[node name="Interactive" type="Node2D" parent="." index="2"]
+y_sort_enabled = true
+
+[node name="InteractiveIndicator" parent="Interactive" index="0" instance=ExtResource("10_coyje")]
+position = Vector2(-25, 149)
+next_color = Color(1, 0.219608, 0.227451, 1)
+hint_switched_message = "Красный"
+hint_message = "Белый"
+
+[node name="InteractiveIndicator2" parent="Interactive" index="1" instance=ExtResource("10_coyje")]
+position = Vector2(17, 150)
+next_color = Color(0.243137, 1, 0.427451, 1)
+hint_switched_message = "Зеленый"
+hint_message = "Белый"
+hint_time = 0.3
+
+[node name="Buildings" type="Node2D" parent="." index="3"]
+unique_name_in_owner = true
+y_sort_enabled = true
+
+[node name="Building1" parent="Buildings" index="0" instance=ExtResource("11_stoop")]
+position = Vector2(-518, -94)
+texture_building = ExtResource("12_kk0m4")
+texture_door_closed = ExtResource("13_s7moq")
+texture_door_opened = ExtResource("14_7naw1")
+
+[node name="Building2" parent="Buildings" index="1" instance=ExtResource("11_stoop")]
+position = Vector2(9, -151)
+texture_building = ExtResource("12_kk0m4")
+texture_door_closed = ExtResource("13_s7moq")
+texture_door_opened = ExtResource("14_7naw1")
+locked = false
+interier_scn = ExtResource("15_oqh3q")
+
+[node name="Building3" parent="Buildings" index="2" instance=ExtResource("11_stoop")]
+position = Vector2(516, -119)
+texture_building = ExtResource("12_kk0m4")
+texture_door_closed = ExtResource("13_s7moq")
+texture_door_opened = ExtResource("14_7naw1")
+interier_scn = ExtResource("16_nsbcg")
+
+[node name="Walls" type="Node2D" parent="." index="4"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls" index="0"]
+position = Vector2(757, 738)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D" index="0"]
+position = Vector2(-739, -185)
+shape = SubResource("WorldBoundaryShape2D_50k4w")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls/StaticBody2D" index="1"]
+position = Vector2(-760, -1293)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_50k4w")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls/StaticBody2D" index="2"]
+position = Vector2(-1722, -734)
+rotation = 1.57079
+shape = SubResource("WorldBoundaryShape2D_50k4w")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls/StaticBody2D" index="3"]
+position = Vector2(208, -736)
+rotation = 4.71238
+shape = SubResource("WorldBoundaryShape2D_50k4w")
+
+[node name="StreetGround" type="Sprite2D" parent="." index="5"]
+z_index = -1
+texture = ExtResource("17_jgo3v")
+metadata/_edit_lock_ = true
+
+[node name="AlarmPotionHandler" type="Node" parent="." index="6" node_paths=PackedStringArray("buildings_root")]
+script = ExtResource("18_7vurf")
+item = ExtResource("9_kqs6l")
+buildings_root = NodePath("../Buildings")

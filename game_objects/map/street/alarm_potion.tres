@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="SpecialItem" load_steps=3 format=3 uid="uid://c2xq1x7jl55q7"]
-
-[ext_resource type="Script" path="res://game_objects/item/special_items/special_item.gd" id="1_au0ux"]
-[ext_resource type="Texture2D" uid="uid://by64r80rx06kw" path="res://assets/kenney_generic_items/potion.png" id="2_0r8kh"]
-
-[resource]
-script = ExtResource("1_au0ux")
-texture = ExtResource("2_0r8kh")
-sprite_scale = Vector2(0.5, 0.5)
