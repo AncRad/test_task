@@ -54,10 +54,11 @@ func _on_area_entered(area : Area2D) -> void:
 			var pickupable_item := area as PickupableItem
 			if pickupable_item.can_pickup():
 				var item : Item = pickupable_item.item
-				if item.is_storable() and container.can_append(item):
-					if pickupable_item.pickup():
-						if not container.append(item):
-							assert(false)
+				if item.is_storable():
+					if container.can_append(item):
+						if pickupable_item.pickup():
+							if not container.append(item):
+								assert(false)
 				
 				elif user and item.can_use_by(user):
 					if pickupable_item.pickup():
@@ -69,7 +70,7 @@ func _on_area_entered(area : Area2D) -> void:
 func _on_container_changed() -> void:
 	for child in get_children():
 		if child is CollisionShape2D:
-			if child.disabled == container and container.has_free_space():
+			if child.disabled == (container and container.has_free_space()):
 				child.disabled = not child.disabled
 
 ## Может ли предт быть использован на [member user].
@@ -110,8 +111,8 @@ func _instantiate_pickupable_item(item : Item, parent : Node) -> void:
 	var pickupable_item := PICKUPABLE_ITEM.instantiate() as PickupableItem
 	pickupable_item.item = item
 	_area_ignore_once.append(pickupable_item)
-	pickupable_item.global_position = global_position
 	parent.add_child(pickupable_item)
+	pickupable_item.global_position = global_position
 
 
 
