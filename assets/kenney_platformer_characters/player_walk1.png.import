@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wer7w48vv7lo"
-path="res://.godot/imported/player_hurt.png-449ddda8fa0be25708a77b3c644ce574.ctex"
+uid="uid://d1ene0p3assmu"
+path="res://.godot/imported/player_walk1.png-f35fa48124c7dcb714c46de004039f5b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/kenney_platformer_characters/Poses/player_hurt.png"
-dest_files=["res://.godot/imported/player_hurt.png-449ddda8fa0be25708a77b3c644ce574.ctex"]
+source_file="res://assets/kenney_platformer_characters/player_walk1.png"
+dest_files=["res://.godot/imported/player_walk1.png-f35fa48124c7dcb714c46de004039f5b.ctex"]
 
 [params]
 
