@@ -1,25 +1,30 @@
 @tool
 class_name SimpleItems
 extends Item
+## Класс реализации некоторых базовых предметов.
+##
+## Реализует логику взаимодействия базовых предметов в с [PlayerCharacter].
 
+## Сигнал испускаемый в случае удачного использования.
 signal used(user : PlayerCharacter)
 
+## Типы предметов реализуемые классом
 enum Type {
-	#NULL,
-	APPLE,
-	ORANGE,
-	CHILI_PEPPER,
-	OLIVE,
-	ALARM_POTION,
-	KEY,
-	TOKEN14,
-	AMULET,
-	TELEPORTER_POTION,
+	APPLE, ## Яблоко
+	ORANGE, ## Опальсик
+	CHILI_PEPPER, ## Перец чили
+	OLIVE, ## Оливка
+	ALARM_POTION, ## Зелье сигнализации. Испускает сигнал при использовании, сигнал должен быть отслежен [param alarm_potion_handler.gd]
+	KEY, ## Ключ
+	TOKEN14, ## Жетон
+	AMULET, ## Амулет
+	TELEPORTER_POTION, ## Зелье телепортации
 }
 
+## Тип предмета
 @export var type : Type = Type.APPLE
 
-
+## Логики использования на [param user]. Возвщащает [param true] в случае успеха.
 func use_by(user : PlayerCharacter = null) -> bool:
 	if user:
 		match type:
@@ -37,7 +42,7 @@ func use_by(user : PlayerCharacter = null) -> bool:
 				user.max_health -= 10
 			
 			Type.ALARM_POTION:
-				pass
+				pass # просто испускает сигнал used. Этот сигнал должен быть отслежен alarm_potion_handler.gd
 			
 			Type.KEY:
 				user.keys += 1
@@ -50,7 +55,7 @@ func use_by(user : PlayerCharacter = null) -> bool:
 				user.max_health += 1
 				return false
 			
-			Type.TELEPORTER_POTION:
+			Type.TELEPORTER_POTION: # отложенная телепортация
 				if user.is_inside_tree():
 					user.get_tree().physics_frame.connect(random_teleport.bind(user, 1000), CONNECT_ONE_SHOT)
 					return true
@@ -63,22 +68,27 @@ func use_by(user : PlayerCharacter = null) -> bool:
 		return true
 	return false
 
+## Может либыть использован.
 func can_use_by(user : PlayerCharacter = null) -> bool:
 	if user:
-		if type == Type.TELEPORTER_POTION:
+		if type == Type.TELEPORTER_POTION: # требует присутствия user в дереве
 			if user.is_inside_tree():
 				return true
 			return false
 		
-		return type != Type.TOKEN14
+		return type != Type.TOKEN14 # ничего не делает
 	return false
 
+## Может ли быть выброшен.
 func can_drop(_user : PlayerCharacter = null) -> bool:
 	return true
 
+## Может ли быть перенесен в хранилище.
 func is_storable() -> bool:
-	return type != Type.KEY
+	return type != Type.KEY # ключи не могут быть перенесены в хранилище
 
+## Телепортация [param user] в рандомное направление с целевой дистанцией и поиском столкновений.
+## Дистанция [param distance] является целевой, но может быть не достигнута.
 static func random_teleport(user : PlayerCharacter, distance : float) -> void:
 	var motion := Vector2.RIGHT.rotated(randf_range(0,1) * TAU) * distance
 	var position := user.global_position
