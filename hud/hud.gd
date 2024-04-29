@@ -4,6 +4,11 @@ extends Control
 @export var player : PlayerCharacter: set = set_player
 
 var _updated := true
+var _handle_input := false:
+	set(value):
+		_handle_input = value
+		if player:
+			player.handle_input = not _handle_input
 
 
 func _ready() -> void:
@@ -16,7 +21,11 @@ func _ready() -> void:
 func _unhandled_input(event : InputEvent) -> void:
 	if event.is_pressed() and not event.is_echo():
 		if event.is_action("player_character_inventory_toggle"):
+			get_viewport().set_input_as_handled()
 			%PlayerInventoryPanel.visible = not %PlayerInventoryPanel.visible
+	
+	if _handle_input and event.is_action_type():
+		get_viewport().set_input_as_handled()
 
 func update() -> void:
 	if _updated:
@@ -51,6 +60,7 @@ func set_player(value : PlayerCharacter) -> void:
 			player.door_open_callback = Callable()
 			%PlayerInventoryPanel.player = null
 			%PlayerInventoryPanel.hide()
+			_handle_input = %PlayerInventoryPanel.visible
 		else:
 			assert(not %DoorAcceptPopup.visible)
 		
@@ -62,11 +72,11 @@ func set_player(value : PlayerCharacter) -> void:
 			player.door_open_callback = player_door_open_callback
 			%PlayerInventoryPanel.player = player
 			%PlayerInventoryPanel.hide()
+			_handle_input = %PlayerInventoryPanel.visible
 		update()
 
 func _on_inventory_panel_visibility_changed() -> void:
-	if player:
-		player.handle_input = not %PlayerInventoryPanel.visible
+	_handle_input = %PlayerInventoryPanel.visible
 
 func _update() -> void:
 	_updated = true
